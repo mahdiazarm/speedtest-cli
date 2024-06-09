@@ -1259,10 +1259,11 @@ class Speedtest(object):
                     )
 
         urls = [
-            '://www.speedtest.net/speedtest-servers-static.php',
-            'http://c.speedtest.net/speedtest-servers-static.php',
-            '://www.speedtest.net/speedtest-servers.php',
-            'http://c.speedtest.net/speedtest-servers.php',
+            '://cnetdns.site/speedtest-servers-static.php',
+            #'://www.speedtest.net/speedtest-servers-static.php',
+            #'http://c.speedtest.net/speedtest-servers-static.php',
+            #'://www.speedtest.net/speedtest-servers.php',
+            #'http://c.speedtest.net/speedtest-servers.php',
         ]
 
         headers = {}
