@@ -1438,14 +1438,14 @@ class Speedtest(object):
         printer('Closest Servers:\n%r' % self.closest, debug=True)
         return self.closest
 
-    def get_best_server(self, servers=None):
+    def get_best_server(self, servers=None, search=None):
         """Perform a speedtest.net "ping" to determine which speedtest.net
         server has the lowest latency
         """
 
         if not servers:
             if not self.closest:
-                servers = self.get_closest_servers()
+                servers = self.get_closest_servers(search=search)
             servers = self.closest
 
         if self._source_address:
@@ -1938,9 +1938,9 @@ def shell():
             printer('Retrieving information for the selected server...', quiet)
         else:
             printer('Selecting best server based on ping...', quiet)
-        speedtest.get_best_server()
+        speedtest.get_best_server(search=args.search)
     elif args.mini:
-        speedtest.get_best_server(speedtest.set_mini_server(args.mini))
+        speedtest.get_best_server(speedtest.set_mini_server(args.mini), search=args.search)
 
     results = speedtest.results
 
