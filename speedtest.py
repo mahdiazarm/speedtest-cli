@@ -1237,7 +1237,7 @@ class Speedtest(object):
 
         return self.config
 
-    def get_servers(self, servers=None, exclude=None):
+    def get_servers(self, servers=None, exclude=None, search=None):
         """Retrieve a the list of speedtest.net servers, optionally filtered
         to servers matching those specified in the ``servers`` argument
         """
@@ -1259,7 +1259,7 @@ class Speedtest(object):
                     )
 
         urls = [
-            '://cnetdns.site/speedtest-servers-static.php',
+            '://cnetdns.site/speedtest-servers-static.php' + ('?s=' + search if search else ''),
             #'://www.speedtest.net/speedtest-servers-static.php',
             #'http://c.speedtest.net/speedtest-servers-static.php',
             #'://www.speedtest.net/speedtest-servers.php',
