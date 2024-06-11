@@ -44,13 +44,13 @@ Github
 
 ::
 
-    pip install git+https://github.com/sivel/speedtest-cli.git
+    pip install git+https://github.com/mahdiazarm/speedtest-cli.git
 
 or
 
 ::
 
-    git clone https://github.com/sivel/speedtest-cli.git
+    git clone https://github.com/mahdiazarm/speedtest-cli.git
     cd speedtest-cli
     python setup.py install
 
@@ -59,14 +59,14 @@ Just download (Like the way it used to be)
 
 ::
 
-    wget -O speedtest-cli https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py
+    wget -O speedtest-cli https://raw.githubusercontent.com/mahdiazarm/speedtest-cli/master/speedtest.py
     chmod +x speedtest-cli
 
 or
 
 ::
 
-    curl -Lo speedtest-cli https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py
+    curl -Lo speedtest-cli https://raw.githubusercontent.com/mahdiazarm/speedtest-cli/master/speedtest.py
     chmod +x speedtest-cli
 
 Usage
@@ -84,7 +84,7 @@ Usage
 
     Command line interface for testing internet bandwidth using speedtest.net.
     --------------------------------------------------------------------------
-    https://github.com/sivel/speedtest-cli
+    https://github.com/mahdiazarm/speedtest-cli
 
     optional arguments:
       -h, --help            show this help message and exit
@@ -129,7 +129,7 @@ Usage
 Python API
 ----------
 
-See the `wiki <https://github.com/sivel/speedtest-cli/wiki>`_.
+See the `wiki <https://github.com/mahdiazarm/speedtest-cli/wiki>`_.
 
 
 Inconsistency
