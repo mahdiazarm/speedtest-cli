@@ -1418,13 +1418,13 @@ class Speedtest(object):
 
         return self.servers
 
-    def get_closest_servers(self, limit=5):
+    def get_closest_servers(self, limit=5, search=None):
         """Limit servers to the closest speedtest.net servers based on
         geographic distance
         """
 
         if not self.servers:
-            self.get_servers(search=args.search)
+            self.get_servers(search=search)
 
         for d in sorted(self.servers.keys()):
             for s in self.servers[d]:
