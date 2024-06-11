@@ -1763,7 +1763,7 @@ def parse_args():
                              'sorted by distance')
     parser.add_argument('--server', type=PARSER_TYPE_INT, action='store',
                         help='Search Criteria for getting servers list')
-    parser.add_argument('--search', type=PARSER_TYPE_STR, action='append',
+    parser.add_argument('--search', type=PARSER_TYPE_STR, action='store',
                         help='Specify a server ID to test against. Can be '
                              'supplied multiple times')
     parser.add_argument('--exclude', type=PARSER_TYPE_INT, action='append',
