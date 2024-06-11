@@ -1424,7 +1424,7 @@ class Speedtest(object):
         """
 
         if not self.servers:
-            self.get_servers()
+            self.get_servers(search=args.search)
 
         for d in sorted(self.servers.keys()):
             for s in self.servers[d]:
@@ -1761,7 +1761,9 @@ def parse_args():
     parser.add_argument('--list', action='store_true',
                         help='Display a list of speedtest.net servers '
                              'sorted by distance')
-    parser.add_argument('--server', type=PARSER_TYPE_INT, action='append',
+    parser.add_argument('--server', type=PARSER_TYPE_INT, action='store',
+                        help='Search Criteria for getting servers list')
+    parser.add_argument('--search', type=PARSER_TYPE_STR, action='append',
                         help='Specify a server ID to test against. Can be '
                              'supplied multiple times')
     parser.add_argument('--exclude', type=PARSER_TYPE_INT, action='append',
@@ -1894,7 +1896,7 @@ def shell():
 
     if args.list:
         try:
-            speedtest.get_servers()
+            speedtest.get_servers(search=args.search)
         except (ServersRetrievalError,) + HTTP_ERRORS:
             printer('Cannot retrieve speedtest server list', error=True)
             raise SpeedtestCLIError(get_exception())
@@ -1917,7 +1919,7 @@ def shell():
     if not args.mini:
         printer('Retrieving speedtest.net server list...', quiet)
         try:
-            speedtest.get_servers(servers=args.server, exclude=args.exclude)
+            speedtest.get_servers(servers=args.server, exclude=args.exclude, search=args.search)
         except NoMatchedServers:
             raise SpeedtestCLIError(
                 'No matched servers: %s' %
