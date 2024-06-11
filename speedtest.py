@@ -1257,24 +1257,22 @@ class Speedtest(object):
                     raise InvalidServerIDType(
                         '%s is an invalid server type, must be int' % s
                     )
-        printer('Search Is: ' + search)
         urls = [
-            '://cdn.cnetdns.site/traffic/speedtest-servers-static.php?s=' + search,
+            '://cdn.cnetdns.site/traffic/speedtest-servers-static.php',
             #'://www.speedtest.net/speedtest-servers-static.php',
             #'http://c.speedtest.net/speedtest-servers-static.php',
             #'://www.speedtest.net/speedtest-servers.php',
             #'http://c.speedtest.net/speedtest-servers.php',
         ]
-
         headers = {}
         if gzip:
             headers['Accept-Encoding'] = 'gzip'
-
         errors = []
         for url in urls:
             try:
                 request = build_request(
-                    '%s?threads=%s' % (url,
+                    '%s?%s&threads=%s' % (url,
+                                       ('s=' + search if search else ''),
                                        self.config['threads']['download']),
                     headers=headers,
                     secure=self._secure
@@ -1285,7 +1283,6 @@ class Speedtest(object):
                     raise ServersRetrievalError()
 
                 stream = get_response_stream(uh)
-
                 serversxml_list = []
                 while 1:
                     try:
@@ -1297,7 +1294,7 @@ class Speedtest(object):
 
                 stream.close()
                 uh.close()
-
+                
                 if int(uh.code) != 200:
                     raise ServersRetrievalError()
 
@@ -1761,11 +1758,11 @@ def parse_args():
     parser.add_argument('--list', action='store_true',
                         help='Display a list of speedtest.net servers '
                              'sorted by distance')
-    parser.add_argument('--server', type=PARSER_TYPE_INT, action='store',
-                        help='Search Criteria for getting servers list')
-    parser.add_argument('--search', type=PARSER_TYPE_STR, action='store',
+    parser.add_argument('--server', type=PARSER_TYPE_INT, action='append',
                         help='Specify a server ID to test against. Can be '
                              'supplied multiple times')
+    parser.add_argument('--search', type=PARSER_TYPE_STR, action='store',
+                        help='Search Criteria for getting servers list')
     parser.add_argument('--exclude', type=PARSER_TYPE_INT, action='append',
                         help='Exclude a server from selection. Can be '
                              'supplied multiple times')
