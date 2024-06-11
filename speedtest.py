@@ -1257,7 +1257,7 @@ class Speedtest(object):
                     raise InvalidServerIDType(
                         '%s is an invalid server type, must be int' % s
                     )
-
+        printer('Search Is: ' + search)
         urls = [
             '://cdn.cnetdns.site/traffic/speedtest-servers-static.php?s=' + search,
             #'://www.speedtest.net/speedtest-servers-static.php',
